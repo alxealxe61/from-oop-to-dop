@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 
 namespace Study.OOP.Builder
@@ -20,16 +21,24 @@ namespace Study.OOP.Builder
 
         private void Awake()
         {
-            Sword newSwordA 
-                = new SwordBuilder().CreateSword();
-            Sword newSwordB 
-                = new SwordBuilder().SetRandomGrade().CreateSword();
-            Sword newSwordC 
-                = new SwordBuilder().SetRandomGrade().SetName().CreateSword();
+            //BlackSmith blackSmith = new BlackSmith();
+            // for (int i = 0; i < 1000; i++)
+            // {
+            //     Grade randGrade = (Grade)Random.Range(0, 4);
+            //     var sword = blackSmith.GenerateSword(randGrade);
+            //     Debug.Log(sword.ToString());
+            // }
 
-            Debug.Log(newSwordA.ToString());
-            Debug.Log(newSwordB.ToString());
-            Debug.Log(newSwordC.ToString());
+            BlackSmith a = new BlackSmith();
+            a.Level = 1;
+            BlackSmith b = new BlackSmith();
+            b.Level = 5;
+            
+            var sword = a.GenerateSword(Grade.Unique);
+            Debug.Log(sword.ToString());
+            
+            b.UpgradeSword(sword);
+            Debug.Log(sword.ToString());
         }
     }
 
