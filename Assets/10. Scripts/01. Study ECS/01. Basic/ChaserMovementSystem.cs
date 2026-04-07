@@ -60,7 +60,7 @@ namespace ECS_Basic
 
                 // 내적의 결과를 이용해서 forward와 directionToTarget 방향벡터간의
                 // 차이를 구해서, 일정이상의 차이가 있다면 회전을 하도록 합니다.
-                if (dotProduct < 0.99f)
+                if (dotProduct < 0.5f)
                 {
                     quaternion rotationDelta =
                         quaternion.AxisAngle(math.up(),
@@ -72,7 +72,7 @@ namespace ECS_Basic
                 // 마지막으로는 이동처리. 가속운동에 방향을 곱해 줍니다.
                 // 실질적인 프레임당 처리는 물리엔진이 알아서 합니다.
                 velocity.ValueRW.Linear = 
-                    localTransform.ValueRO.Forward() * properties.ValueRO.MoveSpeed;
+                    forward * properties.ValueRO.MoveSpeed;
             }
         }
     }
